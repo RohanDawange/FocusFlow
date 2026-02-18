@@ -1,40 +1,38 @@
-import { Link } from "react-router-dom";
-import PageMeta from "@/components/common/PageMeta";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import { Home, Search, Ghost } from 'lucide-react';
 
-export default function NotFound() {
+const NotFound = () => {
   return (
-    <>
-      <PageMeta title="Page Not Found" description="" />
-      <div className="relative flex flex-col items-center justify-center min-h-screen p-6 overflow-hidden z-1">
-        <div className="mx-auto w-full max-w-[242px] text-center sm:max-w-[472px]">
-          <h1 className="mb-8 font-bold text-gray-800 text-title-md dark:text-white/90 xl:text-title-2xl">
-            ERROR
-          </h1>
-
-          <img src="/images/error/404.svg" alt="404" className="dark:hidden" />
-          <img
-            src="/images/error/404-dark.svg"
-            alt="404"
-            className="hidden dark:block"
-          />
-
-          <p className="mt-10 mb-6 text-base text-gray-700 dark:text-gray-400 sm:text-lg">
-            The page may have been deleted or does not exist. Please check the
-            URL is correct.
-          </p>
-
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-5 py-3.5 text-sm font-medium text-gray-700 shadow-theme-xs hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] dark:hover:text-gray-200"
-          >
-            Back to home
-          </Link>
-        </div>
-        {/* <!-- Footer --> */}
-        <p className="absolute text-sm text-center text-gray-500 -translate-x-1/2 bottom-6 left-1/2 dark:text-gray-400">
-          &copy; {new Date().getFullYear()}
-        </p>
+    <div className="flex flex-col items-center justify-center min-h-[calc(100vh-64px)] px-6 text-center animate-fade-in">
+      <div className="relative mb-12">
+        <div className="absolute -inset-10 bg-primary/20 rounded-full blur-3xl opacity-50 animate-pulse" />
+        <div className="relative text-9xl font-black text-primary opacity-20">404</div>
+        <Ghost className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 text-primary drop-shadow-2xl animate-bounce" />
       </div>
-    </>
+      
+      <h1 className="text-4xl font-black text-foreground mb-4">Lost in the study zone?</h1>
+      <p className="text-xl text-muted-foreground mb-10 max-w-md mx-auto leading-relaxed">
+        We couldn't find the page you're looking for. Maybe it was moved to a long break!
+      </p>
+      
+      <div className="flex flex-col sm:flex-row gap-4">
+        <Link to="/">
+          <Button size="lg" className="bg-primary text-primary-foreground font-black px-10 rounded-2xl shadow-xl hover:shadow-primary/20 transition-all gap-2 transform hover:scale-105 active:scale-95">
+            <Home className="w-5 h-5" /> Back to Timer
+          </Button>
+        </Link>
+        <Button variant="outline" size="lg" className="border-accent border-2 font-black px-10 rounded-2xl hover:bg-accent transition-all transform hover:scale-105 active:scale-95" onClick={() => window.history.back()}>
+          Go Back
+        </Button>
+      </div>
+      
+      <div className="mt-20 flex items-center justify-center gap-2 text-muted-foreground/30 font-black uppercase tracking-[0.3em] text-[10px]">
+        <Search className="w-4 h-4" /> Error: Resource Not Found
+      </div>
+    </div>
   );
-}
+};
+
+export default NotFound;
